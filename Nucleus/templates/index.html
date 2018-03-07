@@ -1,0 +1,272 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Nucleus RFPs
+{% endblock %}
+
+{% block main %}
+<h1>Nucleus RFP</h1>
+    <form action="{{ url_for('review') }}" id="form" method="post, get">
+  <fieldset>
+
+
+    <div class="form-group">
+      <label for="campaign">Campaign Name</label>
+      <input type="text" class="form-control" id="campaign" name="campaign" aria-describedby="campaignname">
+    </div>
+    <div class="form-group">
+      <label for="due">Due Date</label>
+      <input type="text" class="form-control" id="due" name="due" aria-describedby="duedate" placeholder="2/28/2018 5:00PM or ASAP">
+    </div>
+    <div class="form-group">
+      <label for="due">Budget</label>
+      <input type="text" class="form-control" id="budget" name="budget" aria-describedby="budget" placeholder="$150,000">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Salesperson</label>
+      <input type="text" class="form-control" id="sales" name="sales">
+    </div>
+    <div class="form-group">
+      <label for="viewability">Viewability</label>
+      <select class="form-control" id="viewability" name="viewability">
+        <option value="none">None</option>
+        <option value="70% DV">70% DV</option>
+        <option value="100% DV">100% DV</option>
+        <option value="100% GroupM">100% GroupM</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="frequencycap">Frequency Cap</label>
+      <input type="text" class="form-control" id="freqcap" name="freqcap">
+    </div>
+
+
+
+    <fieldset class="form-group">
+      <legend>Ad Units</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="970x250" name="970x250" checked="">
+          970x250
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="300x600" name="300x600" checked="">
+          300x600
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="728x90" name="728x90" checked="">
+          728x90
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="300x250" name="300x250" checked="">
+          300x250
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="320x50" name="320x50" checked="">
+          320x50
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="Preroll" name="Preroll" checked="">
+          Preroll
+        </label>
+      </div>
+
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="native" value="Native">
+          Native
+        </label>
+      </div>
+
+    <fieldset class="form-group">
+      <legend>Publishers</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="gannett" name="gannett" checked="">
+          Gannett
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="hearst" name="hearst" checked="">
+          Hearst
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="mcclatchy" name="mcclatchy"checked="">
+          McClatchy
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="tronc" name="tronc" checked="">
+          Tronc
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="advance"value="advance">
+          Advance
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="ajc" value="ajc">
+          AJC
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="dmn" value="dmn">
+          Dallas Morning News
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="denver" value="denver">
+          Denver Post
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="gatehouse" value="gatehouse">
+          Gatehouse
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="jacksonville" value="jacksonville">
+          Jacksonville
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="startribune" value="startribune">
+          Minneapolis Star Tribune
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="nydn" value="nydn">
+          NYDN
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="newsday" value="newday">
+          Newsday
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="philly" value="philly">
+          Philly
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="pitt" value="pitt">
+          Pittsburgh Gazette
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="seattle" value="seattle">
+          Seattle Times
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="stn" value="stn">
+          Send to News
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="stl" value="stl" >
+          STL Post Dispatch
+        </label>
+      </div>
+      <div class="form-check disabled">
+
+
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="tampa" name="tampa" style="display:inline">
+          Tampa Bay
+        </label>
+      </div>
+    <legend></legend>
+
+
+    <script src="/static/scripts.js" language="Javascript" type="text/javascript"></script>
+
+
+      <h>Target 1</h>
+       <div id="dynamicInput" class="form-group">
+          <label for="demo">Demo</label>
+            <input type="text" class="form-control" id="demo1" name="demo1" aria-describedby="duedate">
+
+        <label for="geo">Geo</label>
+        <input type="text" class="form-control" id="geo1" name="geo1" aria-describedby="duedate">
+        <label for="contextual">Contextual</label>
+        <input type="text" class="form-control" id="contextual1" name="contextual1" aria-describedby="contextual">
+        <label for="start">Start Date</label>
+        <input type="text" class="form-control" id="start1" aria-describedby="start1" name="start" placeholder="2/28/2018">
+        <label for="end">End Date</label>
+        <input type="text" class="form-control" id="end1" aria-describedby="end" name="end1" placeholder="12/31/2018">
+
+
+      </div>
+      <input type="button" value="Add Target" onClick="addInput('dynamicInput');">
+    </form>
+    <br></br>
+    <div class="form-group">
+      <label for="exampleInputFile">File Input</label>
+      <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+      <small id="fileHelp" class="form-text text-muted">Choose any files that you deem necessary for the publisher.</small>
+    </div>
+    <div class="form-group">
+      <label for="note">Additional Notes</label>
+      <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+
+
+
+
+
+{% endblock %}

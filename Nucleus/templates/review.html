@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block title %}
+RFP Review
+{% endblock %}
+
+{% block main %}
+
+
+            <main><br></br>
+            <h><b>Review</b></h><br></br>
+
+            <h>Subject: </h>Nucleus RFP: {{ publishers["campaign"] }} Due {{ publishers["due"] }}<br></br>
+                Hi Team,<br></br>
+                I hope your day is going well!<br></br>
+                We have received a RFP for {{ publishers["campaign"] }} that is due by {{ publishers["due"] }}. See below for the details, and please reach out if you have any issues with the timeline.<br></br>
+
+                <div>
+                Client: {{ publishers["campaign"] }}
+                </div>
+                <div>
+                Budget: {{ publishers["budget"] }}
+                </div>
+                <div>
+                Viewability: {{ publishers["viewability"] }}
+                </div><br></br>
+
+                {% for i in range(length) %}
+
+                    <p><h><b><u>Target {{ i + 1 }}</u></b></h>
+                    <div>
+                    Start Date: {{ starts[i] }}
+                    </div>
+                    <div>
+                    Ends: {{ ends[i] }}
+                    </div>
+                    <div>
+                    Demo: {{ targets[i] }}
+                    </div>
+                    <div>
+                    Geo: {{ geos[i] }}
+                    </div>
+                    <div>
+                    Contextual: {{ conts[i] }}
+                    </div>
+                    <u>Ad Units:</u> </p>
+
+                    {% for ad in adunits %}
+                    <div>
+                    {{ ad }}:
+                    </div>
+
+
+
+
+                    {% endfor %}
+
+
+
+
+                {% endfor %}
+                <br></br>
+                <div>
+                    {{ note }}<br></br>
+                </div>
+
+                Best,
+                <div>
+                Kevin
+                </div><br></br>
+                <form action="{{ url_for('success') }}" id="form" method="post, get">
+                    <fieldset>
+                <button type="submit" class="btn btn-primary">Send to Publishers</button>
+                </fieldset>
+                </form>
+
+                <br></br>
+
+
+
+
+
+
+
+
+
+
+
+            </main>
+
+
+
+
+        <div class="clearfix"></div>
+
+{% endblock %}
+
+

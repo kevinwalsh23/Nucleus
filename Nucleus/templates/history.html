@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+RFP History
+{% endblock %}
+
+{% block main %}
+<br></br>
+
+<div style="float:left; display:inline;font-size:17px;"><b>RFP History</b></div>
+
+    <table class= "table table-striped">
+        <tr>
+
+            <th>ID</th>
+            <th>Campaign</th>
+            <th>Sent Date</th>
+            <th>Budget</th>
+            <th>Sales</th>
+            <th>Planner</th>
+            <th>Status</th>
+        </tr>
+        <tr class="rowmachine">
+
+        </tr>
+        <tfoot>
+            <tr>
+                <td colspan="7"></td>
+                <td> </td>
+            </tr>
+        </tfoot>
+
+        {% for rfp in hist %}
+            <tr>
+
+
+                <td>{{ rfp['id'] }}</td>
+                <td>{{ rfp['campaign'] }}</td>
+                <td>{{ rfp['datesent'] }}</td>
+                <td>${{ rfp['budget'] }}</td>
+                <td>{{ rfp['sales'] }}</td>
+                <td>{{ rfp['planner'] }}</td>
+                <td>{{ rfp['status'] }}</td>
+
+            </tr>
+        {% endfor %}
+
+            <tr class="__web-inspector-hide-shortcut__">
+            <td colspan="7"></td>
+            <td></td>
+        </tr>
+    </table>
+{% endblock %}
