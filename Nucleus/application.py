@@ -46,10 +46,6 @@ def index():
     today = datetime.date.today()
     #print(today)
     week_day = datetime.datetime.today().weekday()
-    #print('WEEKDAYYYY' + str(week_day))
-    #print(week_day - 1)
-
-
 
     now = datetime.datetime.now()
     #print('NOW' + str(now))
@@ -78,43 +74,11 @@ def index():
         else:
             week_day = 6
 
-    #if (secondundo < 1439 and secondundo > 300):
-
-
-    #print('SECONDS' +str(seconds))
-
-
-    #steals = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week JOIN dailyhour AS d ON b.time_start = d.timehour JOIN hourdaily as e on b.time_end = e.hdaily WHERE :seconds >= minuteman AND :seconds <= mininterval AND daynum = :weekd ORDER BY time_start ASC", weekd = week_day, seconds=seconds)
-
-    #upcomingdeals = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week JOIN dailyhour AS d ON b.time_start = d.timehour JOIN hourdaily as e on b.time_end = e.hdaily WHERE :seconds <= minuteman AND daynum = :weekd ORDER BY time_start ASC", weekd = week_day, seconds=seconds)
-
-
-    #print('this is steals: ', steals)
-    #print('this is json steals: ', json.dumps(steals))
-    # cream = jsonify(steals)
-    #print(cream)
-    #barjson = json.dumps(steals)
-    #print(barjson)
-    #day_hour = datetime.datetime.today().time()
-    #print(day_hour)
 
     now = datetime.datetime.now()
     midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
     seconds = int((((now - midnight).seconds) / 60) - 300)
 
-
-    #timestuff = db.execute("SELECT * FROM deals AS a JOIN dailyhour AS b ON a.time_start = b.minuteman WHERE :seconds <= minutema ON ", seconds=seconds)
-   # timestuff = db.execute("SELECT * FROM bars AS a Join deals AS b JOIN dailyhour AS c ON b.time_start = c.timehour JOIN hourdaily AS d ON b.time_end = d.hdaily WHERE :seconds >= minuteman AND :seconds <= mininterval ORDER BY time_start ASC", seconds=seconds)
-
-    #asdf = cast(timestuff as datetime)ORDER BY time_start DESC
-    #print(timestuff)
-
-    #print(xyz)
-
-    #asdf = db.execute("SELECT time_start FROM deals WHERE cast(time_start as datetime) > :timestuff", timestuff=datetime.datetime.today().time())
-    #print(asdf)
-
-    #mapadd(steals)
 
     if request.args.get("zipnasty") == None:
         return render_template("index.html")
@@ -184,12 +148,8 @@ def review():
     length = len(targets)
 
     publishers = request.args.to_dict()
-    #print(publishers)
-
-
 
     return render_template("review.html", campaign=campaign, note=note, adunits=adunits, conts=conts, ends=ends, starts=starts, length=length, geos=geos, due=due, budget=budget, viewability=viewability, publishers=publishers, targets=targets)
-
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -211,10 +171,6 @@ def login():
 
         # query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
-        #print(rows)
-        #print("HELLLOOOOOO")
-
-        #pass = db.execute("SELECT * FROM users WHERE ")
 
         # ensure username exists and password is correct
         if len(rows) != 1:
@@ -231,7 +187,6 @@ def login():
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
-        #print('TESSSSSS')
         return render_template("login.html")
 
 @app.route("/logout")
@@ -255,23 +210,6 @@ def history():
     print(hist)
 
     return render_template("history.html", hist=hist)
-
-
-
-
-
-
-
-
-
-    #steals = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week JOIN dailyhour AS d ON b.time_start = d.timehour JOIN hourdaily as e on b.time_end = e.hdaily WHERE :seconds >= minuteman AND :seconds <= mininterval AND daynum = :weekd ORDER BY time_start ASC", weekd = week_day, seconds=seconds)
-
-    #barjson = json.dumps(steals)
-
-    # redirect user to login form
-    #return barjson
-
-
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -324,111 +262,7 @@ def register():
         return render_template("register.html")
 
 
-@app.route("/mapadd", methods=["GET", "POST"])
-def mapadd():
-    #return json.dumps(x)
-
-    """Log user out."""
-    #return json.dumps(zipresults)
-    #print("dickhead")
-    today = datetime.date.today()
-    #print(today)
-    week_day = datetime.datetime.today().weekday()
-    #print(request.args.get("keyword"))
-
-    now = datetime.datetime.now()
-    midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
-
-    secondundo = int(((now - midnight).seconds) / 60)
-    y = request.form.get("keyword")
-    #print(y)
-    #if y:
-    #print(y)
-    #print('mapadd')
-    x = request.args.get("zipnasty")
-    #print(str(x) + 'ABC123')
-    #if x:
-    #print(x)
-
-    if (secondundo < 1439 and secondundo > 300):
-        seconds = int((((now - midnight).seconds) / 60) - 300)
-    else:
-        seconds = int((((now - midnight).seconds) / 60) + 1140)
-
-        #Still dealing with UTC Time, so the day of week will always be one ahead during 7pm to midnight EST (midnight to 5 UTC)
-        #Subtracting one if time is in this interval to account for that so correct deals appear from correct day
-        if week_day != 0:
-            week_day -= 1
-            #print(week_day)
-        else:
-            week_day = 6
-
-    # forget any user_id
-    #if request.args.get("zipnasty") != None:
-    if x:
-        x = request.args.get("zipnasty")  + "%"
-        #print(x + "asdffdsa")
-        zipresults = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week JOIN hoods AS d ON a.zip = d.codezip WHERE daynum = :weekd AND a.zip LIKE :search OR d.hood LIKE :search", weekd = week_day, search = x)
-        #print(zipresults)
-        return json.dumps(zipresults)
-
-    elif request.args.get("keyword") != None:
-        y = "%" + request.args.get("keyword")  + "%"
-        zipresults = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week WHERE daynum = :weekd AND b.deal LIKE :search", weekd = week_day, search = y)
-        return json.dumps(zipresults)
-    else:
-        zipresults = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week JOIN dailyhour AS d ON b.time_start = d.timehour JOIN hourdaily as e on b.time_end = e.hdaily WHERE :seconds >= minuteman AND :seconds <= mininterval AND daynum = :weekd ORDER BY time_start ASC", weekd = week_day, seconds=seconds)
-        return json.dumps(zipresults)
-
-#@app.route("/mapsearch")
-#def mapsearch():
-#    """Log user out."""
-#
-#    today = datetime.date.today()
-#    #print(today)
-#    week_day = datetime.datetime.today().weekday()
-
-
-#    now = datetime.datetime.now()
-#    midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
-
-#    secondundo = int(((now - midnight).seconds) / 60)
-#    y = request.args.get("keyword")
-    #if y:
-    #    print(y)
-#    x = request.args.get("zipnasty")
-    #print(cheese)
-    #if x:
-        #print(x)
-
-#    if (secondundo < 1439 and secondundo > 240):
-##        seconds = int((((now - midnight).seconds) / 60) - 240)
-#    else:
-#        seconds = int((((now - midnight).seconds) / 60) + 1200)
-    # forget any user_id
-    #if request.args.get("zipnasty") != None:
-#    if x:
-#        x = request.args.get("zipnasty")  + "%"
-        #print(x + "!")
-#        zipresults = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week JOIN hoods AS d ON a.zip = d.codezip WHERE daynum = :weekd AND a.zip LIKE :search OR d.hood LIKE :search", weekd = week_day, search = x)
-        #if zipresults == None:
-#        return json.dumps(zipresults)
-         #   zipresults = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week JOIN hoods AS d ON a.zip = d.codezip WHERE daynum = :weekd AND d.hood LIKE :search", weekd = week_day, search = x)
-        #zipresults = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week JOIN dailyhour AS d ON b.time_start = d.timehour JOIN hourdaily as e on b.time_end = e.hdaily WHERE :seconds >= minuteman AND :seconds <= mininterval AND daynum = :weekd AND a.zip LIKE :search ORDER BY time_start ASC", weekd = week_day, seconds=seconds, search = x)
-#    elif request.args.get("keyword") != "":
-#        y = "%" + request.args.get("keyword")  + "%"
-#        print(y)
-#        zipresults = db.execute("SELECT * FROM bars AS a JOIN deals AS b ON a.bar_id = b.id_bar JOIN weekday AS c ON b.day_of_week = c.day_week WHERE daynum = :weekd AND b.deal LIKE :search", weekd = week_day, search = y)
-#        return json.dumps(zipresults)
-
 
 @app.route("/about", methods=["GET", "POST"])
 def about():
     return render_template("about.html")
-
-
-    #bucks = db.execute("SELECT * FROM places WHERE postal_code LIKE :q OR place_name LIKE :q OR admin_name1 LIKE :q LIMIT 10 ", q=q)
-
-   # placed = jsonify(bucks)
-
-    #return placed
